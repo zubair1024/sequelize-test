@@ -27,7 +27,11 @@ module.exports = {
           const pool = await this.sql.connect(this.sqldbURI);
           let modelsLoaded = await this.loadModels();
           if (modelsLoaded) {
-            resolve(true);
+            this.sequelize.sync({
+              logging: console.log
+            }).then(() => {
+              resolve(true);
+            });
           }
         })
         .catch(err => {
@@ -39,6 +43,7 @@ module.exports = {
   //load models
   loadModels: function () {
     return new Promise(resolve => {
+      this.Project = require("./models/Project");
       resolve(true);
     });
   }
