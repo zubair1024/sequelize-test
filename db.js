@@ -7,12 +7,12 @@ const sql = require("mssql");
 module.exports = {
   sequelize: null,
   sql: sql,
-  sqldbURI: "mssql://sa:root@localhost:1433/RAZRTEST",
+  sqldbURI: "mssql://sa:root@192.168.1.143:1433/RAZRTEST",
   sqldb: {
     dialect: "mssql",
     database: "RAZRTEST",
     username: "sa",
-    host: "localhost",
+    host: "192.168.1.143",
     port: "1433",
     password: "root",
     logging: true
@@ -43,8 +43,18 @@ module.exports = {
   //load models
   loadModels: function () {
     return new Promise(resolve => {
-      this.Project = require("./models/Project");
-      resolve(true);
+      try {
+        this.Project = require("./models/Project");
+        this.TotalRetention = require("./models/TotalRetention");
+        this.LivePolicy = require("./models/LivePolicy");
+        this.LivePolicyByInception = require("./models/LivePolicyByInception");
+        this.TotalPayment=require('./models/TotalPayment');
+        this.User=require('./models/User');
+        resolve(true);
+      } catch (err) {
+        console.log('DB: Unable to load model',err);
+        resolve(false)
+      }
     });
   }
 };
