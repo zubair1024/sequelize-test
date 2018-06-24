@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
 /**
  * ARRAYS NOT SUPPORTED IN MSSQL
+ * TODO: Add arrays to schema
  */
 const schema = {
     name: {
