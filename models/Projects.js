@@ -16,7 +16,7 @@ const schema = {
         allowNull: false,
         validate: {
             notEmpty: true
-        }
+        },
         defaultValue: 'Project'
     },
     pState: Sequelize.DOUBLE,

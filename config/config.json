@@ -1,0 +1,11 @@
+{
+  "development": {
+    "username": "sa",
+    "password": "root",
+    "database": "RAZRTEST",
+    "host": "192.168.1.143",
+    "dialect": "mssql",
+    "port": "1433",
+    "logging": true
+  }
+}
