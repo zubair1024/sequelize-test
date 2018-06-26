@@ -6,11 +6,9 @@ global.db = require("./db");
     if (conn) {
         console.log('Ready to Rumble');
 
-        db.TotalRetention.create({coverPlansCancelledDelta:20324});
-        db.TotalPayment.create({amount:10000});
-        db.LivePolicy.create({leadValue: 10000});
-        db.LivePolicyByInception.create({inceptedCountYearly:10000});
-        // //var model = await db.loadModels()
+        
+        
+    
         // db.Project.create({ title: 'This is My First Title', description: 'omnomnom' }).then
         // //.spread((user, created) => {
         //     console.log(user)
