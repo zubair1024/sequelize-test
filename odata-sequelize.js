@@ -58,7 +58,7 @@ var helpers = {
     },
 
     preOrderTraversal: (root, baseObj, operator, sequelize) => {
-        var operator = operator || helpers.getOperator(root.type, sequelize);
+        var operator = operator || helpers.getOperator(root.func, sequelize);
 
         if (root.type === "functioncall") {
             helpers.parseFunctionCall(root, baseObj, operator, sequelize);
@@ -121,14 +121,14 @@ var helpers = {
     transformTree: (root, sequelize) => {
         if (!!!sequelize.Op) throw new Error("Sequelize operator not found.");
 
-        Object.getOwnPropertySymbols(root).forEach(rootSymbol => {
+        Object.getOwnPropertySymbols(root.name).forEach(rootSymbol => {
             if (mappedValueOperators.includes(rootSymbol)) {
-                var tmp = root[rootSymbol];
-                delete root[rootSymbol];
+                var tmp = root.name[rootSymbol];
+                delete root.name[rootSymbol];
 
-                var targetObj = tmp[0];
-                var key = Object.keys(targetObj)[0];
-                var value = targetObj[key];
+                // var targetObj = tmp;
+                // var key = Object.keys(targetObj)[0];
+                var value =  tmp;
 
                 if (!!value.constructor && value.constructor.name === "Where") {
                     root = tmp[0];
@@ -357,6 +357,7 @@ module.exports = function (string2Parse, sequelize) {
     helpers.mapOperators(sequelize);
 
     var expression = parseExpression(string2Parse);
+    console.log(expression);
     var attributes = parseSelect(expression.$select);
     var top = parseTop(expression.$top);
     var skip = parseSkip(expression.$skip);

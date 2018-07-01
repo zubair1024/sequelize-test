@@ -45,7 +45,7 @@ module.exports = {
     return new Promise(resolve => {
       try {
         this.AwaitingInceptionByDate=require('./models/AwaitingInceptionByDate');
-        this.Project = require("./models/Project");
+        //this.Project = require("./models/Project");
         this.TotalRetention = require("./models/TotalRetention");
         this.LivePolicy = require("./models/LivePolicy");
         this.LivePolicyByInception = require("./models/LivePolicyByInception");
